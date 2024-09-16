@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MEME</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center; 
+            justify-content: center; 
+            text-align: center;
+            overflow: hidden;
+        }
+        body {
+            flex-direction: column;
+            background-color: #CCCCFF;
+        }
+        #meme {
+            max-width: 100%;
+            max-height: 90%;
+            object-fit: contain; /* This ensures the aspect ratio is maintained without cropping */
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Meme</h1>
+    <img id="meme" src="{{ meme_url }}" oncontextmenu="return changeMeme();" alt="Meme Image">
+    
+    <script>
+        function changeMeme() {
+            // Assuming "/change_meme" will handle the change process server-side and return a new meme
+            document.getElementById("meme").src = "/change_meme";
+            return false; // Prevent the default context menu from appearing
+        }
+    </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.addEventListener("mousedown", function(event) {
+                    if (event.button === 0) {  // Left mouse button
+                        location.reload();  // Reload the page
+                    }
+                });
+            });
+        </script>
+</body>
+</html>
